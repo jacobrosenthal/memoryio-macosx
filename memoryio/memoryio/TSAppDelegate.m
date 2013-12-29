@@ -21,7 +21,11 @@
 @synthesize statusItem;
 @synthesize statusMenu;
 @synthesize statusImage;
+@synthesize leftImage;
+@synthesize rightImage;
 @synthesize startupMenuItem;
+@synthesize windowOutlet;
+@synthesize window;
 
 - (instancetype)init {
     self = [super init]; // or call the designated initalizer
@@ -67,7 +71,89 @@
     
     //put menu in menubar
     [statusItem setMenu:statusMenu];
+    
+    
+    
+    
+    
+    NSImage *backgroundImage = [[NSImage alloc] initWithContentsOfFile:
+                                [bundle pathForResource:@"zach" ofType:@"jpg"]];
+
+    NSSize imageSize = [backgroundImage size];
+
+
+    NSRect frame = NSMakeRect(0, 0, imageSize.width, imageSize.height);
+    
+    window  = [[NSWindow alloc] initWithContentRect:frame
+                                                     styleMask:NSBorderlessWindowMask
+                                                       backing:NSBackingStoreBuffered
+                                                         defer:NO];
+    
+    //[window setAspectRatio:imageSize];
+    
+    [[window contentView] setWantsLayer:YES];
+    [[window contentView] layer].contents = backgroundImage;
+
+    
+    [window makeKeyAndOrderFront:NSApp];
+    
+    
+   
+    
+    NSButton *leftButton = [[NSButton alloc] initWithFrame:NSMakeRect(25, 125, 25, 25)];
+    [[window contentView] addSubview: leftButton];
+    [leftButton setButtonType:NSMomentaryChangeButton]; //Set what type button You want
+    [leftButton setBordered:NO];
+    
+    leftImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"left" ofType:@"png"]];
+    
+    [leftButton setAlternateTitle:@"back"];
+    
+    [leftButton setImagePosition:NSImageOnly];
+    [leftButton setImage:leftImage];
+    [leftButton setAlternateImage:leftImage];
+    
+    [leftButton setTarget:self];
+    [leftButton setAction:@selector(rightButtonPressed)];
+    
+    NSButtonCell *leftButtonCell = [leftButton cell];
+    [leftButtonCell setImageScaling:NSImageScaleAxesIndependently];
+    
+    
+    
+    NSButton *rightButton = [[NSButton alloc] initWithFrame:NSMakeRect(imageSize.width-25, 125, 25, 25)];
+    [[window contentView] addSubview: rightButton];
+    [rightButton setButtonType:NSMomentaryChangeButton]; //Set what type button You want
+    [rightButton setBordered:NO];
+    
+    rightImage = [[NSImage alloc] initWithContentsOfFile:[bundle pathForResource:@"right" ofType:@"png"]];
+    
+    [rightButton setAlternateTitle:@"back"];
+    
+    [rightButton setImagePosition:NSImageOnly];
+    [rightButton setImage:rightImage];
+    [rightButton setAlternateImage:rightImage];
+    
+    [rightButton setTarget:self];
+    [rightButton setAction:@selector(rightButtonPressed)];
+    
+    NSButtonCell *rightButtonCell = [rightButton cell];
+    [rightButtonCell setImageScaling:NSImageScaleAxesIndependently];
+    
 }
+
+-(void)rightButtonPressed {
+    NSLog(@"Button pressed!");
+    
+    //Do what You want here...
+}
+
+-(void)leftButtonPressed {
+    NSLog(@"Button pressed!");
+    
+    //Do what You want here...
+}
+
 
 - (IBAction)quitAction:(id)sender
 {
