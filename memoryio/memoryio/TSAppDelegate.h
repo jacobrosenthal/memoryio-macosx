@@ -20,8 +20,9 @@
 @property QTCaptureDevice *device;
 @property NSNumber *warmup;
 @property NSString *filename;
-@property (unsafe_unretained) IBOutlet NSWindow *windowOutlet;
-@property (strong) NSWindow *window;
+@property (unsafe_unretained) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSButton *leftButtonOutlet;
+@property (unsafe_unretained) IBOutlet NSWindow *rightButtonOutlet;
 
 @property io_connect_t  root_port;
 @property IONotificationPortRef  notifyPortRef;
@@ -35,5 +36,8 @@
 - (IBAction)forceAction:(id)sender;
 - (IBAction)aboutAction:(id)sender;
 - (IBAction)startupAction:(id)sender;
+- (IBAction)leftAction:(id)sender;
+- (IBAction)rightAction:(id)sender;
+
 
 @end

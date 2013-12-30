@@ -649,8 +649,11 @@
         </menu>
         <customObject id="494" customClass="TSAppDelegate">
             <connections>
+                <outlet property="leftButtonOutlet" destination="KdQ-HE-WNZ" id="jcY-NY-jYj"/>
+                <outlet property="rightButtonOutlet" destination="pBl-y2-UmX" id="k3K-pe-rOX"/>
                 <outlet property="startupMenuItem" destination="567" id="574"/>
                 <outlet property="statusMenu" destination="560" id="573"/>
+                <outlet property="window" destination="pBl-y2-UmX" id="ngh-sa-CQS"/>
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
@@ -682,5 +685,63 @@
                 </menuItem>
             </items>
         </menu>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="pBl-y2-UmX">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" bottomStrut="YES"/>
+            <rect key="contentRect" x="480" y="608" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <view key="contentView" id="Njf-Cn-fRk">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="KdQ-HE-WNZ">
+                        <rect key="frame" x="0.0" y="119" width="41" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="41" id="XYb-No-eax"/>
+                        </constraints>
+                        <buttonCell key="cell" type="bevel" title="back" bezelStyle="rounded" image="NSLeftFacingTriangleTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="aGr-Lp-fa1">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="leftAction:" target="494" id="IAG-vi-E9y"/>
+                        </connections>
+                    </button>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="oBc-nG-HlT">
+                        <rect key="frame" x="439" y="119" width="41" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="41" id="1IH-Ik-KDn"/>
+                        </constraints>
+                        <buttonCell key="cell" type="bevel" title="forward" bezelStyle="rounded" image="NSRightFacingTriangleTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="xaW-1q-96R">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="rightAction:" target="494" id="NmR-cg-7I3"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="KdQ-HE-WNZ" firstAttribute="centerY" secondItem="Njf-Cn-fRk" secondAttribute="centerY" id="40b-Z9-bBd"/>
+                    <constraint firstAttribute="trailing" secondItem="oBc-nG-HlT" secondAttribute="trailing" id="Sk0-te-IdN"/>
+                    <constraint firstItem="oBc-nG-HlT" firstAttribute="top" secondItem="KdQ-HE-WNZ" secondAttribute="top" id="b2k-7h-W3S"/>
+                    <constraint firstItem="KdQ-HE-WNZ" firstAttribute="leading" secondItem="Njf-Cn-fRk" secondAttribute="leading" id="xXo-Td-1WF"/>
+                </constraints>
+            </view>
+        </window>
+        <button verticalHuggingPriority="750" id="vDU-Ah-0vg">
+            <rect key="frame" x="0.0" y="0.0" width="82" height="32"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gCm-je-shk">
+                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                <font key="font" metaFont="system"/>
+            </buttonCell>
+        </button>
     </objects>
+    <resources>
+        <image name="NSLeftFacingTriangleTemplate" width="9" height="9"/>
+        <image name="NSRightFacingTriangleTemplate" width="9" height="9"/>
+    </resources>
 </document>
