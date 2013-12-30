@@ -649,11 +649,9 @@
         </menu>
         <customObject id="494" customClass="TSAppDelegate">
             <connections>
-                <outlet property="leftButtonOutlet" destination="KdQ-HE-WNZ" id="jcY-NY-jYj"/>
-                <outlet property="rightButtonOutlet" destination="pBl-y2-UmX" id="k3K-pe-rOX"/>
                 <outlet property="startupMenuItem" destination="567" id="574"/>
                 <outlet property="statusMenu" destination="560" id="573"/>
-                <outlet property="window" destination="pBl-y2-UmX" id="ngh-sa-CQS"/>
+                <outlet property="windowOutlet" destination="pBl-y2-UmX" id="BqY-N1-Uu7"/>
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
@@ -731,14 +729,6 @@
                 </constraints>
             </view>
         </window>
-        <button verticalHuggingPriority="750" id="vDU-Ah-0vg">
-            <rect key="frame" x="0.0" y="0.0" width="82" height="32"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gCm-je-shk">
-                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                <font key="font" metaFont="system"/>
-            </buttonCell>
-        </button>
     </objects>
     <resources>
         <image name="NSLeftFacingTriangleTemplate" width="9" height="9"/>

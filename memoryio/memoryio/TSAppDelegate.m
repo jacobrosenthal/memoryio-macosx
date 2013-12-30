@@ -21,10 +21,8 @@
 @synthesize statusItem;
 @synthesize statusMenu;
 @synthesize statusImage;
-@synthesize leftImage;
-@synthesize rightImage;
 @synthesize startupMenuItem;
-@synthesize window;
+@synthesize windowOutlet;
 
 - (instancetype)init {
     self = [super init]; // or call the designated initalizer
@@ -81,16 +79,16 @@
     NSSize imageSize = [backgroundImage size];
 
     
-    [[window contentView] setWantsLayer:YES];
-    [[window contentView] layer].contents = backgroundImage;
-    [window setAspectRatio:imageSize];
-    [window setContentMinSize:imageSize];
+    [[windowOutlet contentView] setWantsLayer:YES];
+    [[windowOutlet contentView] layer].contents = backgroundImage;
+    [windowOutlet setAspectRatio:imageSize];
+    [windowOutlet setContentMinSize:imageSize];
     
-    NSRect frame = [window frame];
+    NSRect frame = [windowOutlet frame];
     frame.origin.y -= frame.size.height; // remove the old height
     frame.origin.y += imageSize.height; // add the new height
     frame.size = imageSize;
-    [window setFrame:frame display:YES animate:YES];
+    [windowOutlet setFrame:frame display:YES animate:YES];
    
     
     

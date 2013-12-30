@@ -13,16 +13,12 @@
 
 @property NSStatusItem *statusItem;
 @property NSImage *statusImage;
-@property NSImage *leftImage;
-@property NSImage *rightImage;
 @property IBOutlet NSMenu *statusMenu;
 @property IBOutlet NSMenuItem *startupMenuItem;
 @property QTCaptureDevice *device;
 @property NSNumber *warmup;
 @property NSString *filename;
-@property (unsafe_unretained) IBOutlet NSWindow *window;
-@property (weak) IBOutlet NSButton *leftButtonOutlet;
-@property (unsafe_unretained) IBOutlet NSWindow *rightButtonOutlet;
+@property (unsafe_unretained) IBOutlet NSWindow *windowOutlet;
 
 @property io_connect_t  root_port;
 @property IONotificationPortRef  notifyPortRef;
