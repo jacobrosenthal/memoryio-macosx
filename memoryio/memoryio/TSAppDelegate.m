@@ -84,7 +84,7 @@
     [[window contentView] setWantsLayer:YES];
     [[window contentView] layer].contents = backgroundImage;
     [window setAspectRatio:imageSize];
-
+    [window setContentMinSize:imageSize];
     
     NSRect frame = [window frame];
     frame.origin.y -= frame.size.height; // remove the old height
