@@ -86,9 +86,6 @@
     NSString* tempPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(), @"/Pictures/memoryIO/"];
     NSString* tempFile = [tempPath stringByAppendingPathComponent:pictures.lastObject];
     NSURL* URL = [NSURL fileURLWithPath:tempFile];
-
-    [backButtonOutlet setEnabled:NO];
-    [forwardButtonOutlet setEnabled:NO];
     
     NSImage *backgroundImage = [[NSImage alloc] initWithContentsOfURL:URL];
     
@@ -102,11 +99,10 @@
  
     NSSize imageSize = [backgroundImage size];
     
-    [previewImage setImage:backgroundImage];
-    //[previewImage setFrameSize:NSSizeFromCGSize(windowSize)];
-    
     [windowOutlet setAspectRatio:imageSize];
-
+    
+    [previewImage setImage:backgroundImage];
+    
     [windowOutlet makeKeyAndOrderFront: self];
     [NSApp activateIgnoringOtherApps:YES];
     
