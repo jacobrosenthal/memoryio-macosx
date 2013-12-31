@@ -649,6 +649,7 @@
         </menu>
         <customObject id="494" customClass="TSAppDelegate">
             <connections>
+                <outlet property="previewImage" destination="UiO-mR-Ioo" id="R1u-Qb-rvz"/>
                 <outlet property="startupMenuItem" destination="567" id="574"/>
                 <outlet property="statusMenu" destination="560" id="573"/>
                 <outlet property="windowOutlet" destination="pBl-y2-UmX" id="BqY-N1-Uu7"/>
@@ -657,8 +658,11 @@
         <customObject id="420" customClass="NSFontManager"/>
         <menu title="Menu" id="560">
             <items>
-                <menuItem title="Settings" id="Xes-Zn-de2">
+                <menuItem title="Preview" id="Xes-Zn-de2">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="preview:" target="494" id="7Cl-ce-fwf"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="About" id="561">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -686,7 +690,7 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="pBl-y2-UmX">
+        <window title="memoryIO Preview" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="pBl-y2-UmX">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" bottomStrut="YES"/>
             <rect key="contentRect" x="480" y="608" width="480" height="270"/>
@@ -695,67 +699,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="KdQ-HE-WNZ">
-                        <rect key="frame" x="20" y="119" width="20" height="32"/>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UiO-mR-Ioo">
+                        <rect key="frame" x="-3" y="-3" width="486" height="276"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="20" id="XYb-No-eax"/>
-                        </constraints>
-                        <buttonCell key="cell" type="bevel" title="back" bezelStyle="rounded" image="NSLeftFacingTriangleTemplate" imagePosition="only" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="aGr-Lp-fa1">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent"></string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="leftAction:" target="494" id="IAG-vi-E9y"/>
-                        </connections>
-                    </button>
-                    <button focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="oBc-nG-HlT">
-                        <rect key="frame" x="440" y="119" width="20" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="20" id="1IH-Ik-KDn"/>
-                        </constraints>
-                        <buttonCell key="cell" type="bevel" title="forward" bezelStyle="rounded" image="NSRightFacingTriangleTemplate" imagePosition="only" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="xaW-1q-96R">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent"></string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="rightAction:" target="494" id="NmR-cg-7I3"/>
-                        </connections>
-                    </button>
-                    <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="R7a-aK-Y5U">
-                        <rect key="frame" x="440" y="20" width="20" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="Mgs-l7-x3b"/>
-                        </constraints>
-                        <popUpButtonCell key="cell" type="square" alternateTitle="settings" bezelStyle="shadowlessSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" preferredEdge="maxX" id="bBB-Ha-qre">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
-                            <menu key="menu" title="OtherViews" id="WwD-gx-5Hh"/>
-                        </popUpButtonCell>
-                        <connections>
-                            <outlet property="menu" destination="560" id="Cfz-HN-vw5"/>
-                        </connections>
-                    </popUpButton>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" imageScaling="proportionallyUpOrDown" imageFrameStyle="photo" id="As1-VT-1qH"/>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="R7a-aK-Y5U" firstAttribute="trailing" secondItem="oBc-nG-HlT" secondAttribute="trailing" id="3ce-Kr-h5K"/>
-                    <constraint firstItem="KdQ-HE-WNZ" firstAttribute="centerY" secondItem="Njf-Cn-fRk" secondAttribute="centerY" id="40b-Z9-bBd"/>
-                    <constraint firstAttribute="trailing" secondItem="R7a-aK-Y5U" secondAttribute="trailing" constant="20" id="7Mr-NL-b3h"/>
-                    <constraint firstAttribute="bottom" secondItem="R7a-aK-Y5U" secondAttribute="bottom" constant="20" symbolic="YES" id="Fji-oE-7Ti"/>
-                    <constraint firstAttribute="trailing" secondItem="oBc-nG-HlT" secondAttribute="trailing" constant="20" symbolic="YES" id="Sk0-te-IdN"/>
-                    <constraint firstItem="oBc-nG-HlT" firstAttribute="top" secondItem="KdQ-HE-WNZ" secondAttribute="top" id="b2k-7h-W3S"/>
-                    <constraint firstItem="R7a-aK-Y5U" firstAttribute="leading" secondItem="oBc-nG-HlT" secondAttribute="leading" id="hOM-Tq-1hI"/>
-                    <constraint firstItem="KdQ-HE-WNZ" firstAttribute="leading" secondItem="Njf-Cn-fRk" secondAttribute="leading" constant="20" symbolic="YES" id="xXo-Td-1WF"/>
+                    <constraint firstAttribute="bottom" secondItem="UiO-mR-Ioo" secondAttribute="bottom" id="IbF-GS-193"/>
+                    <constraint firstItem="UiO-mR-Ioo" firstAttribute="leading" secondItem="Njf-Cn-fRk" secondAttribute="leading" id="JXC-T1-D7O"/>
+                    <constraint firstAttribute="trailing" secondItem="UiO-mR-Ioo" secondAttribute="trailing" id="bJ4-2a-Mkz"/>
+                    <constraint firstItem="UiO-mR-Ioo" firstAttribute="top" secondItem="Njf-Cn-fRk" secondAttribute="top" id="jAP-Kp-WTZ"/>
                 </constraints>
             </view>
         </window>
     </objects>
-    <resources>
-        <image name="NSLeftFacingTriangleTemplate" width="9" height="9"/>
-        <image name="NSRightFacingTriangleTemplate" width="9" height="9"/>
-    </resources>
 </document>

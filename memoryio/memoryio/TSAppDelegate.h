@@ -11,14 +11,27 @@
 //
 @interface TSAppDelegate : NSObject <NSUserNotificationCenterDelegate, NSSharingServiceDelegate, NSApplicationDelegate>
 
-@property NSStatusItem *statusItem;
-@property NSImage *statusImage;
 @property IBOutlet NSMenu *statusMenu;
 @property IBOutlet NSMenuItem *startupMenuItem;
+@property (unsafe_unretained) IBOutlet NSWindow *windowOutlet;
+@property (weak) IBOutlet NSButton *backButtonOutlet;
+@property (weak) IBOutlet NSButton *forwardButtonOutlet;
+@property (weak) IBOutlet NSImageView *previewImage;
+
+- (IBAction)quitAction:(id)sender;
+- (IBAction)forceAction:(id)sender;
+- (IBAction)aboutAction:(id)sender;
+- (IBAction)startupAction:(id)sender;
+- (IBAction)leftAction:(id)sender;
+- (IBAction)rightAction:(id)sender;
+- (IBAction)preview:(id)sender;
+
+@property NSStatusItem *statusItem;
+@property NSImage *statusImage;
+
 @property QTCaptureDevice *device;
 @property NSNumber *warmup;
 @property NSString *filename;
-@property (unsafe_unretained) IBOutlet NSWindow *windowOutlet;
 
 @property io_connect_t  root_port;
 @property IONotificationPortRef  notifyPortRef;
@@ -28,12 +41,6 @@
 @property IONotificationPortRef  notificationPort;
 @property io_object_t     notifier;
 
-- (IBAction)quitAction:(id)sender;
-- (IBAction)forceAction:(id)sender;
-- (IBAction)aboutAction:(id)sender;
-- (IBAction)startupAction:(id)sender;
-- (IBAction)leftAction:(id)sender;
-- (IBAction)rightAction:(id)sender;
 
 
 @end

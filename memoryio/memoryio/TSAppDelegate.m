@@ -23,6 +23,9 @@
 @synthesize statusImage;
 @synthesize startupMenuItem;
 @synthesize windowOutlet;
+@synthesize backButtonOutlet;
+@synthesize forwardButtonOutlet;
+@synthesize previewImage;
 
 - (instancetype)init {
     self = [super init]; // or call the designated initalizer
@@ -69,39 +72,63 @@
     //put menu in menubar
     [statusItem setMenu:statusMenu];
     
-    
-    
-    
-    
-    NSImage *backgroundImage = [[NSImage alloc] initWithContentsOfFile:
-                                [bundle pathForResource:@"zach" ofType:@"jpg"]];
+}
 
+-(IBAction)preview:(id)sender
+{
+    
+    NSError *error;
+    NSArray *pictures = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:
+                         [NSString stringWithFormat:@"%@%@",
+                          NSHomeDirectory(),
+                          @"/Pictures/memoryIO/"] error:&error ];
+    
+    NSString* tempPath = [NSString stringWithFormat:@"%@%@", NSHomeDirectory(), @"/Pictures/memoryIO/"];
+    NSString* tempFile = [tempPath stringByAppendingPathComponent:pictures.lastObject];
+    NSURL* URL = [NSURL fileURLWithPath:tempFile];
+
+    [backButtonOutlet setEnabled:NO];
+    [forwardButtonOutlet setEnabled:NO];
+    
+    NSImage *backgroundImage = [[NSImage alloc] initWithContentsOfURL:URL];
+    
+    if(!backgroundImage){
+        
+        //Used to detect where our files are
+        NSBundle *bundle = [NSBundle mainBundle];
+        backgroundImage = [[NSImage alloc] initWithContentsOfFile:
+                           [bundle pathForResource:@"io_logo" ofType:@"png"]];
+    }
+ 
     NSSize imageSize = [backgroundImage size];
-
     
-    [[windowOutlet contentView] setWantsLayer:YES];
-    [[windowOutlet contentView] layer].contents = backgroundImage;
+    [previewImage setImage:backgroundImage];
+    //[previewImage setFrameSize:NSSizeFromCGSize(windowSize)];
+    
     [windowOutlet setAspectRatio:imageSize];
-    [windowOutlet setContentMinSize:imageSize];
+
+    [windowOutlet makeKeyAndOrderFront: self];
+    [NSApp activateIgnoringOtherApps:YES];
     
-    NSRect frame = [windowOutlet frame];
-    frame.origin.y -= frame.size.height; // remove the old height
-    frame.origin.y += imageSize.height; // add the new height
-    frame.size = imageSize;
-    [windowOutlet setFrame:frame display:YES animate:YES];
-   
-    
-    
+    //dispatch
+    //grab a forward and backward image
+
+}
+
+-(IBAction)setPhoto:(NSImage*)image
+{
     
 }
 
--(IBAction)leftAction:(id)sender {
+-(IBAction)leftAction:(id)sender
+{
     NSLog(@"Button pressed!");
     
     //Do what You want here...
 }
 
--(IBAction)rightAction:(id)sender {
+-(IBAction)rightAction:(id)sender
+{
     NSLog(@"Button pressed!");
     
     //Do what You want here...
@@ -142,6 +169,7 @@
 {
     [sender setState: NSOffState];
     [[NSApplication sharedApplication] orderFrontStandardAboutPanel:self];
+    [NSApp activateIgnoringOtherApps:YES];
     
 }
 
@@ -183,6 +211,7 @@
             [self tweetText:@"  #memoryio" withPhoto:[notification.userInfo objectForKey:@"imageURL"]];
 			break;
 		case NSUserNotificationActivationTypeContentsClicked:
+            [self preview:nil];
 			NSLog(@"Notification body was clicked -> redirect to item");
 			break;
 		default:
