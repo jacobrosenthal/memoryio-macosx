@@ -657,6 +657,9 @@
         <customObject id="420" customClass="NSFontManager"/>
         <menu title="Menu" id="560">
             <items>
+                <menuItem title="Settings" id="Xes-Zn-de2">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
                 <menuItem title="About" id="561">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -722,11 +725,30 @@
                             <action selector="rightAction:" target="494" id="NmR-cg-7I3"/>
                         </connections>
                     </button>
+                    <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="R7a-aK-Y5U">
+                        <rect key="frame" x="440" y="20" width="20" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Mgs-l7-x3b"/>
+                        </constraints>
+                        <popUpButtonCell key="cell" type="square" alternateTitle="settings" bezelStyle="shadowlessSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" pullsDown="YES" preferredEdge="maxX" id="bBB-Ha-qre">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" title="OtherViews" id="WwD-gx-5Hh"/>
+                        </popUpButtonCell>
+                        <connections>
+                            <outlet property="menu" destination="560" id="Cfz-HN-vw5"/>
+                        </connections>
+                    </popUpButton>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="R7a-aK-Y5U" firstAttribute="trailing" secondItem="oBc-nG-HlT" secondAttribute="trailing" id="3ce-Kr-h5K"/>
                     <constraint firstItem="KdQ-HE-WNZ" firstAttribute="centerY" secondItem="Njf-Cn-fRk" secondAttribute="centerY" id="40b-Z9-bBd"/>
+                    <constraint firstAttribute="trailing" secondItem="R7a-aK-Y5U" secondAttribute="trailing" constant="20" id="7Mr-NL-b3h"/>
+                    <constraint firstAttribute="bottom" secondItem="R7a-aK-Y5U" secondAttribute="bottom" constant="20" symbolic="YES" id="Fji-oE-7Ti"/>
                     <constraint firstAttribute="trailing" secondItem="oBc-nG-HlT" secondAttribute="trailing" constant="20" symbolic="YES" id="Sk0-te-IdN"/>
                     <constraint firstItem="oBc-nG-HlT" firstAttribute="top" secondItem="KdQ-HE-WNZ" secondAttribute="top" id="b2k-7h-W3S"/>
+                    <constraint firstItem="R7a-aK-Y5U" firstAttribute="leading" secondItem="oBc-nG-HlT" secondAttribute="leading" id="hOM-Tq-1hI"/>
                     <constraint firstItem="KdQ-HE-WNZ" firstAttribute="leading" secondItem="Njf-Cn-fRk" secondAttribute="leading" constant="20" symbolic="YES" id="xXo-Td-1WF"/>
                 </constraints>
             </view>

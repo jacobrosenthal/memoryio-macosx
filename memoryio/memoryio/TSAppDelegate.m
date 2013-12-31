@@ -140,11 +140,14 @@
 
 - (IBAction)aboutAction:(id)sender
 {
+    [sender setState: NSOffState];
     [[NSApplication sharedApplication] orderFrontStandardAboutPanel:self];
+    
 }
 
 - (IBAction)forceAction:(id)sender
 {
+    [sender setState: NSOffState];
     [self takePhotoWithDelay:2.0f];
 }
 
