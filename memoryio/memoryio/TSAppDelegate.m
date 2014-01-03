@@ -96,24 +96,24 @@
         backgroundImage = [[NSImage alloc] initWithContentsOfFile:
                            [bundle pathForResource:@"io_logo" ofType:@"png"]];
     }
- 
+    
+    [self setPhoto:backgroundImage];
+    
+    [windowOutlet makeKeyAndOrderFront: self];
+    [NSApp activateIgnoringOtherApps:YES];
+}
+
+-(IBAction)setPhoto:(NSImage*)backgroundImage
+{
     NSSize imageSize = [backgroundImage size];
     
     [windowOutlet setAspectRatio:imageSize];
     
     [previewImage setImage:backgroundImage];
     
-    [windowOutlet makeKeyAndOrderFront: self];
-    [NSApp activateIgnoringOtherApps:YES];
-    
-    //dispatch
-    //grab a forward and backward image
-
-}
-
--(IBAction)setPhoto:(NSImage*)image
-{
-    
+    NSRect frame = [windowOutlet frame];
+    frame.size.width = (frame.size.height * imageSize.width) / imageSize.height;
+    [windowOutlet setFrame:frame display:YES animate:YES];
 }
 
 -(IBAction)leftAction:(id)sender
@@ -359,6 +359,10 @@ void displayCallback (void *context, io_service_t service, natural_t messageType
         [notification setTitle:@"memoryio"];
         
         if(imageURL != NULL){
+            
+            NSImage *backgroundImage = [[NSImage alloc] initWithContentsOfURL:imageURL];
+            
+            [self setPhoto:backgroundImage];
             
             [notification setActionButtonTitle:@"tweet"];
             
